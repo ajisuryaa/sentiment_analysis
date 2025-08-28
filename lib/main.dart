@@ -1,28 +1,58 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sentiment_analysis/utils/color_pickers.dart';
+import 'package:sentiment_analysis/views/form_input.dart';
 
 void main() {
   runApp(const MyApp());
 }
+
+/// Konfigurasi router
+final GoRouter _router = GoRouter(
+  routes: [
+    GoRoute(
+      path: '/',
+      builder: (context, state) =>
+          const MyHomePage(title: 'Sentiment Analysis'),
+      routes: [
+        GoRoute(
+          path: 'input-text',
+          pageBuilder: (context, state) => CustomTransitionPage(
+            child: const FormInput(),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) =>
+                    SlideTransition(
+              position: Tween<Offset>(
+                begin: const Offset(1, 0), // Slide from right
+                end: Offset.zero,
+              ).animate(animation),
+              child: child,
+            ),
+          ),
+        ),
+      ],
+    ),
+  ],
+);
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Sentiment Analysis',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: ColorPickers.mainColor),
         useMaterial3: true,
-        scaffoldBackgroundColor: ColorPickers.mainColor,
+        scaffoldBackgroundColor: Colors.white,
         textTheme: const TextTheme(
           bodyLarge: TextStyle(fontFamily: 'Roboto', fontSize: 18),
           bodyMedium: TextStyle(fontFamily: 'Roboto', fontSize: 16),
         ),
       ),
-      home: const MyHomePage(title: 'Sentiment Analysis'),
+      routerConfig: _router,
     );
   }
 }
@@ -80,7 +110,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            context.go('/input-text');
+                          },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: ColorPickers.mainColor,
                             foregroundColor: Colors.white,
