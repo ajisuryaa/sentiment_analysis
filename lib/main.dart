@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sentiment_analysis/screens/analyzer_screen.dart';
 import 'package:sentiment_analysis/utils/color_pickers.dart';
-import 'package:sentiment_analysis/views/form_input.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,9 +16,9 @@ final GoRouter _router = GoRouter(
           const MyHomePage(title: 'Sentiment Analysis'),
       routes: [
         GoRoute(
-          path: 'input-text',
+          path: 'analyzer-screen',
           pageBuilder: (context, state) => CustomTransitionPage(
-            child: const FormInput(),
+            child: const AnalyzerScreen(),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) =>
                     SlideTransition(
@@ -111,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: () {
-                            context.go('/input-text');
+                            context.go('/analyzer-screen');
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: ColorPickers.mainColor,
