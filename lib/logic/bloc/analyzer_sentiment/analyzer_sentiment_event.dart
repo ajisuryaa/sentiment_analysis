@@ -17,3 +17,7 @@ class AnalyzingText extends SentimentAnalyzerEvent {
   @override
   List<Object?> get props => [inputedText];
 }
+
+class ResetAnalyzing extends SentimentAnalyzerEvent {
+  const ResetAnalyzing();
+}

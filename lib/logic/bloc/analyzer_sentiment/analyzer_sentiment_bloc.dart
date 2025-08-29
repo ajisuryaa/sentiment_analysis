@@ -21,5 +21,11 @@ class SentimentAnalyzerBloc
         emit(SentimentAnalyzerError(message: e.toString()));
       }
     });
+
+    on<ResetAnalyzing>((event, emit) async {
+      emit(const SentimentAnalyzerLoading());
+      await Future.delayed(const Duration(milliseconds: 200));
+      emit(const SentimentAnalyzerInitial());
+    });
   }
 }

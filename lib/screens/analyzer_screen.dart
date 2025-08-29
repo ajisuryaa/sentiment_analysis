@@ -41,7 +41,14 @@ class _FormInputState extends State<AnalyzerScreen> {
                   textController: _controller,
                 );
               } else if (state is SentimentAnalyzerSuccess) {
-                return ResultAnalyzer(result: state.sentimentResponse);
+                return ResultAnalyzer(
+                  result: state.sentimentResponse,
+                  onBackClicked: () {
+                    context
+                        .read<SentimentAnalyzerBloc>()
+                        .add(const ResetAnalyzing());
+                  },
+                );
               } else if (state is SentimentAnalyzerLoading) {
                 return const Center(
                   child: CircularProgressIndicator(),
