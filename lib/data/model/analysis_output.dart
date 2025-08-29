@@ -1,4 +1,4 @@
-import 'package:sentiment_analysis/data/analysis_result.dart';
+import 'package:sentiment_analysis/data/model/analysis_result.dart';
 
 class Output {
   final String inferenceTime;

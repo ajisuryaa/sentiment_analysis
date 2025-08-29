@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sentiment_analysis/data/sentiment_response.dart';
-import 'package:sentiment_analysis/services/sentiment-api-services.dart';
+import 'package:sentiment_analysis/data/model/sentiment_response.dart';
+import 'package:sentiment_analysis/data/services/sentiment-api-services.dart';
 
 part 'analyzer_sentiment_event.dart';
 part 'analyzer_sentiment_state.dart';

@@ -1,4 +1,4 @@
-import 'package:sentiment_analysis/data/analysis_output.dart';
+import 'package:sentiment_analysis/data/model/analysis_output.dart';
 
 class SentimentResponse {
   final int delayTime;
