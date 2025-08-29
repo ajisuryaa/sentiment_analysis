@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sentiment_analysis/logic/bloc/analyzer_sentiment/analyzer_sentiment_bloc.dart';
 import 'package:sentiment_analysis/logic/cubit/count_text_cubit.dart';
 import 'package:sentiment_analysis/views/form_input.dart';
+import 'package:sentiment_analysis/views/result_analyzer.dart';
 
 class AnalyzerScreen extends StatefulWidget {
   const AnalyzerScreen({super.key});
@@ -22,40 +23,40 @@ class _FormInputState extends State<AnalyzerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: MultiBlocProvider(
-        providers: [
-          BlocProvider(
-            create: (context) => TextLengthCubit(),
+    return SafeArea(
+      child: Scaffold(
+        body: MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => TextLengthCubit(),
+            ),
+            BlocProvider(
+              create: (context) => SentimentAnalyzerBloc(),
+            ),
+          ],
+          child: BlocBuilder<SentimentAnalyzerBloc, SentimentAnalyzerState>(
+            builder: (context, state) {
+              if (state is SentimentAnalyzerInitial) {
+                return FormInput(
+                  textController: _controller,
+                );
+              } else if (state is SentimentAnalyzerSuccess) {
+                return ResultAnalyzer(result: state.sentimentResponse);
+              } else if (state is SentimentAnalyzerLoading) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else if (state is SentimentAnalyzerError) {
+                return Center(
+                  child: Text(state.message),
+                );
+              } else {
+                return const Center(
+                  child: Text("Something error"),
+                );
+              }
+            },
           ),
-          BlocProvider(
-            create: (context) => SentimentAnalyzerBloc(),
-          ),
-        ],
-        child: BlocBuilder<SentimentAnalyzerBloc, SentimentAnalyzerState>(
-          builder: (context, state) {
-            if (state is SentimentAnalyzerInitial) {
-              return FormInput(
-                textController: _controller,
-              );
-            } else if (state is SentimentAnalyzerSuccess) {
-              return Center(
-                child: Text("Success: ${state.sentimentResponse.status}"),
-              );
-            } else if (state is SentimentAnalyzerLoading) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            } else if (state is SentimentAnalyzerError) {
-              return Center(
-                child: Text(state.message),
-              );
-            } else {
-              return const Center(
-                child: Text("Something error"),
-              );
-            }
-          },
         ),
       ),
     );
