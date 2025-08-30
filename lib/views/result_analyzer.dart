@@ -52,11 +52,11 @@ class ResultAnalyzer extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 16),
-                      const Text("Model:",
-                          style: TextStyle(fontWeight: FontWeight.w500)),
-                      const SizedBox(height: 16),
-                      Text(result.output.model,
-                          style: const TextStyle(fontFamily: 'RobotoMono')),
+                      // const Text("Model:",
+                      //     style: TextStyle(fontWeight: FontWeight.w500)),
+                      // const SizedBox(height: 16),
+                      // Text(result.output.model,
+                      //     style: const TextStyle(fontFamily: 'RobotoMono')),
                       const SizedBox(height: 4),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -103,7 +103,7 @@ class ResultAnalyzer extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                (res.score.toString()),
+                                (res.sPercentage.toString()),
                                 style: const TextStyle(
                                   fontFamily: 'RobotoMono',
                                   fontWeight: FontWeight.bold,
@@ -125,7 +125,7 @@ class ResultAnalyzer extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton.icon(
                 onPressed: onBackClicked,
-                icon: const Icon(Icons.arrow_back, size: 20),
+                icon: const Icon(Icons.restore_page, size: 20),
                 label: const Padding(
                   padding: EdgeInsets.symmetric(vertical: 12.0),
                   child: Text(
