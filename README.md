@@ -47,8 +47,8 @@ A Flutter application for analyzing the sentiment of user-provided text. The app
 
 Below are some screenshots demonstrating the main features and user interface of the Sentiment Analysis Flutter App:
 
-| Home Screen                                 | Sentiment Result                                |
-| ------------------------------------------- | ----------------------------------------------- |
-| ![Home Screen](screenshots/home_screen.png) | ![Result Screen](screenshots/result_screen.png) |
+| Home Screen                          | Input Text                             | Sentiment Result                       |
+| ------------------------------------ | -------------------------------------- | -------------------------------------- |
+| ![Home Screen](screenshots/ss-1.png) | ![Result Screen](screenshots/ss-2.png) | ![Result Screen](screenshots/ss-3.png) |
 
 _Note: Screenshots are located in the `screenshots/` directory. If you are running the app locally, you can generate your own screenshots to replace or supplement these._
